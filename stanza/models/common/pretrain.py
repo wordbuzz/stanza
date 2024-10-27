@@ -53,6 +53,8 @@ class Pretrain:
     def load(self):
         if self.filename is not None and os.path.exists(self.filename):
             try:
+                #TODO weights_only = True
+                #see note at stanfordcorenlp/stanza commit 73b850
                 data = torch.load(self.filename, lambda storage, loc: storage)
                 logger.debug("Loaded pretrain from {}".format(self.filename))
                 if not isinstance(data, dict):

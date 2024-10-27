@@ -268,7 +268,11 @@ class CharacterLanguageModel(nn.Module):
 
     @classmethod
     def load(cls, filename, finetune=False):
-        state = torch.load(filename, lambda storage, loc: storage)
+        #claudio tampered here:
+        state = torch.load(filename, 
+                           lambda storage, 
+                           loc: storage, 
+                           weights_only = True)
         # allow saving just the Model object,
         # and allow for old charlms to still work
         if 'state_dict' in state:
